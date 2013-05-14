@@ -1,0 +1,87 @@
+import javax.swing.JOptionPane;
+
+public class Dice {
+
+  static int maximumValue;
+  static int numofdice;
+  static int totalDiceRolled;
+  private int numofMaxValuecount;
+  private static int arrayCount=0;
+  private static int[] valOfDiceArray = new int[10];
+  private String positionOfValue[]= {"10th", "9th", "8th", "7th", "6th", "5th", "4th", "3rd", "2nd", "1st"};
+
+  public static void roll_1_dice(int numOfRolls)
+  {	
+  	for ( int counter = 1; counter <= numOfRolls; counter++ )
+  	{
+  		int dice;
+  		dice = 1+(int)(Math.random()*6);
+  		JOptionPane.showMessageDialog(null, "You rolled " + dice);
+  		totalDiceRolled++;
+  		valOfDiceArray[arrayCount ++]=dice;
+  		if (arrayCount == 10)
+  		{
+  			arrayCount = 0;
+  		}
+  	}
+
+  }
+  
+  public void RollDice(int playerNumofDice, int maxValue)
+  {
+  	numofdice = playerNumofDice;
+  	maximumValue = maxValue;
+  }
+
+  public void RollDices()
+  {
+  	for (int count = 1; count <= maximumValue; count++)
+  	{
+  		for ( int counter = 1; counter <= numofdice; counter++ )
+  			{
+  			int dice;
+  			dice = 1+(int)(Math.random()*6);			
+  			JOptionPane.showMessageDialog(null, "You got " + dice);
+  			numofMaxValuecount++;
+  			valOfDiceArray[arrayCount ++]=dice;
+  			if (arrayCount == 10)
+  			{
+  				arrayCount = 0;
+  			}
+  			}
+  	}
+
+  }
+  	
+  public static int RollCount()
+  {
+  	return totalDiceRolled;
+  }
+  
+  public int playerDiceCount()
+  {
+  	return numofMaxValuecount;
+  }
+  
+  public void reset()
+  {
+  	totalDiceRolled = 0;
+  	numofMaxValuecount = 0;
+  }
+  
+  public void getLas10Values()
+  {
+  	if (10 <= numofMaxValuecount + totalDiceRolled)
+  	{
+  		for(int i=0; i<10;i++)
+  			{
+  			JOptionPane.showMessageDialog(null,"Your " + positionOfValue[i] + " most recent value was " + valOfDiceArray[i]);
+  			}
+  	}
+  }
+  public int totalNumofDiceRolled()
+  {
+  	int total = numofMaxValuecount + totalDiceRolled;				
+  	return total;
+  }
+}
